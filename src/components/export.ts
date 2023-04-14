@@ -1,1 +1,0 @@
-export {default as MyCard} from "./export/SWAPI/swapi"
