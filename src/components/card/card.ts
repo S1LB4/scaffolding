@@ -1,70 +1,56 @@
-import style from "./styles.css"
+export default class PC extends HTMLElement{
 
-export enum Attribute {
-    "name" = "name",
-    "height" = "height",
-    "mass" = "mass",
-
-}
-
-class Card extends HTMLElement {
-    name?: string;
-    height?: string;
-    mass?: string;
-
-    static get observedAttributes() {
-        const attrs: Record<Attribute, null> = {
-            mass: null,
-            height: null,
-            name: null,
-        };
-        return Object.keys(attrs);
-    }
-
-    constructor() {
+constructor() {
         super();
         this.attachShadow({ mode: "open" });
     }
 
-    connectedCallback() {
-        this.render();
+    async connectedCallback() {
+        this.render()
     }
-
-    attributeChangedCallback(
-        propName: Attribute,
-        _: string | undefined,
-        newValue: string | undefined
-        ) {
-            switch (propName) {
-
-                default:
-                this[propName] = newValue;
-                break;
-            }
-
-            this.render();
-        }
 
         render() {
-            if (this.shadowRoot) {
-                this.shadowRoot.innerHTML = ``
+            if (this.shadowRoot) this.shadowRoot.innerHTML = ``
 
-                const css = this.ownerDocument.createElement("style");
-                css.innerHTML = style;
-                this.shadowRoot?.appendChild(css);
+            //Este es el product form
+             const container = this.ownerDocument.createElement("section")
+             container.className = "Container"
 
-                this.shadowRoot.innerHTML += `
-                <section class = "card">
-                <h1>Name: ${this.name}</h1>
-                <p>Height: ${this.height}</p>
-                <p>Mass: ${this.mass}</p>
+            const ProductForm = this.ownerDocument.createElement("h3")
+            ProductForm.className = "Product"
 
 
-                </section>
-                `;
-            }
+
+
+            //Este es el Name
+             const containername = this.ownerDocument.createElement("section")
+             containername.className = "Name"
+
+             const Name = this.ownerDocument.createElement("h4")
+             Name.className = "NameName"
+
+             const NameInput = this.ownerDocument.createElement("input")
+             NameInput.type = "text2"
+
+
+
+            //Este es el Price
+
+             const containerprice = this.ownerDocument.createElement("section")
+             containerprice.className = "Price"
+
+             const Price = this.ownerDocument.createElement("h4")
+             Price.className = "PricePrice"
+
+             const PriceInput = this.ownerDocument.createElement("input")
+             PriceInput.type = "text3"
+
+            //Este es el Button Send
+             const containerbtn = this.ownerDocument.createElement("section")
+             containerbtn.className = "button"
+
         }
     }
 
-customElements.define("my-card", Card);
-export default Card;
+customElements.define("my-card", PC);
+
